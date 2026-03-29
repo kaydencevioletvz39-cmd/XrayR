@@ -22,6 +22,9 @@ Nodes:
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       VlessFlow: "xtls-rprx-vision" # Only support vless
+      # VLESS encryption is a per-user field from panel API, not a local config item in this file.
+      # Panel user example: {"uuid":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx","encryption":"none"}
+      # Compatible fallback field name: "security"
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
       RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
@@ -89,6 +92,9 @@ Nodes:
 #      Timeout: 30 # Timeout for the api request
 #      EnableVless: false # Enable Vless for V2ray Type
 #      VlessFlow: "xtls-rprx-vision" # Only support vless
+#      # VLESS encryption is a per-user field from panel API, not a local config item in this file.
+#      # Panel user example: {"uuid":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx","encryption":"none"}
+#      # Compatible fallback field name: "security"
 #      SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
 #      DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
 #      RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
