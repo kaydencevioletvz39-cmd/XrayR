@@ -80,6 +80,12 @@ or
 bash <(curl -Ls https://raw.githubusercontent.com/kaydencevioletvz39-cmd/XrayR/master/scripts/install.sh)
 ```
 
+Install a specific release:
+
+```bash
+wget -N https://raw.githubusercontent.com/kaydencevioletvz39-cmd/XrayR/master/scripts/install.sh && bash install.sh v1.0.2
+```
+
 ### Docker
 
 [Docker deployment tutorial](https://xrayr-project.github.io/XrayR-doc/xrayr-xia-zai-he-an-zhuang/install/docker)
