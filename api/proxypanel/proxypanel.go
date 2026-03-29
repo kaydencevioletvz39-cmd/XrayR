@@ -520,6 +520,10 @@ func (c *APIClient) ParseV2rayUserListResponse(userInfoResponse *json.RawMessage
 
 	userList := make([]api.UserInfo, len(*vmessUserList))
 	for i, user := range *vmessUserList {
+		encryption := user.Encryption
+		if encryption == "" {
+			encryption = user.Security
+		}
 		if c.SpeedLimit > 0 {
 			speedLimit = uint64((c.SpeedLimit * 1000000) / 8)
 		} else {
@@ -529,6 +533,7 @@ func (c *APIClient) ParseV2rayUserListResponse(userInfoResponse *json.RawMessage
 			UID:         user.UID,
 			Email:       "",
 			UUID:        user.VmessUID,
+			Encryption:  encryption,
 			DeviceLimit: c.DeviceLimit,
 			SpeedLimit:  speedLimit,
 		}

@@ -239,9 +239,14 @@ func (c *APIClient) GetUserList() (UserList *[]api.UserInfo, err error) {
 
 	userList := make([]api.UserInfo, len(users))
 	for i := 0; i < len(users); i++ {
+		encryption := users[i].Encryption
+		if encryption == "" {
+			encryption = users[i].Security
+		}
 		u := api.UserInfo{
-			UID:  users[i].Id,
-			UUID: users[i].Uuid,
+			UID:        users[i].Id,
+			UUID:       users[i].Uuid,
+			Encryption: encryption,
 		}
 
 		// Support 1.7.1 speed limit

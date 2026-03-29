@@ -299,6 +299,10 @@ func (c *APIClient) ParseUserListResponse(userInfoResponse *[]User) (*[]api.User
 	var speedLimit uint64 = 0
 	var userList []api.UserInfo
 	for _, user := range *userInfoResponse {
+		encryption := user.Encryption
+		if encryption == "" {
+			encryption = user.Security
+		}
 		if c.DeviceLimit > 0 {
 			deviceLimit = c.DeviceLimit
 		} else {
@@ -331,6 +335,7 @@ func (c *APIClient) ParseUserListResponse(userInfoResponse *[]User) (*[]api.User
 		userList = append(userList, api.UserInfo{
 			UID:         user.ID,
 			UUID:        user.UUID,
+			Encryption:  encryption,
 			SpeedLimit:  speedLimit,
 			DeviceLimit: deviceLimit,
 			Passwd:      user.UUID,

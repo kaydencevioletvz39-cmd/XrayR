@@ -40,6 +40,8 @@ type CustomConfig struct {
 type UserResponse struct {
 	ID          int     `json:"id"`
 	Passwd      string  `json:"passwd"`
+	Encryption  string  `json:"encryption"`
+	Security    string  `json:"security"`
 	Port        uint32  `json:"port"`
 	Method      string  `json:"method"`
 	SpeedLimit  float64 `json:"node_speedlimit"`

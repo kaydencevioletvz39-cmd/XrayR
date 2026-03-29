@@ -45,6 +45,8 @@ type RealitySettings struct {
 type User struct {
 	ID int `json:"id"`
 	UUID string `json:"uuid"`
+	Encryption string `json:"encryption"`
+	Security string `json:"security"`
 	SpeedLimit float64 `json:"speedLimit"`
 	DeviceLimit int `json:"ipLimit"`
 	AliveIP int `json:"onlineIp"`

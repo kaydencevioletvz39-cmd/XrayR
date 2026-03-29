@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
+	"reflect"
 	"strings"
 
 	"github.com/sagernet/sing-shadowsocks/shadowaead_2022"
@@ -50,6 +51,7 @@ func (c *Controller) buildVlessUser(userInfo *[]api.UserInfo) (users []*protocol
 			Id:   user.UUID,
 			Flow: c.nodeInfo.VlessFlow,
 		}
+		setVlessEncryption(vlessAccount, user.Encryption)
 		users[i] = &protocol.User{
 			Level:   0,
 			Email:   c.buildUserTag(&user),
@@ -57,6 +59,18 @@ func (c *Controller) buildVlessUser(userInfo *[]api.UserInfo) (users []*protocol
 		}
 	}
 	return users
+}
+
+func setVlessEncryption(account *vless.Account, encryption string) {
+	enc := strings.TrimSpace(encryption)
+	if enc == "" {
+		enc = "none"
+	}
+	field := reflect.ValueOf(account).Elem().FieldByName("Encryption")
+	if !field.IsValid() || !field.CanSet() || field.Kind() != reflect.String {
+		return
+	}
+	field.SetString(enc)
 }
 
 func (c *Controller) buildTrojanUser(userInfo *[]api.UserInfo) (users []*protocol.User) {

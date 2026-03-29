@@ -23,6 +23,8 @@ type NodeInfoResponse struct {
 type UserResponse struct {
 	ID          int     `json:"id"`
 	Passwd      string  `json:"passwd"`
+	Encryption  string  `json:"encryption"`
+	Security    string  `json:"security"`
 	SpeedLimit  float64 `json:"nodeSpeedlimit"`
 	DeviceLimit int     `json:"nodeConnector"`
 }

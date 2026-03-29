@@ -66,6 +66,8 @@ type NodeOnline struct {
 type VMessUser struct {
 	UID        int    `json:"uid"`
 	VmessUID   string `json:"vmess_uid"`
+	Encryption string `json:"encryption"`
+	Security   string `json:"security"`
 	SpeedLimit uint64 `json:"speed_limit"`
 }
 

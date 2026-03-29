@@ -255,6 +255,10 @@ func (c *APIClient) GetUserList() (UserList *[]api.UserInfo, err error) {
 		case "V2ray", "Vmess", "Vless":
 			user.UUID = response.Get("data").GetIndex(i).Get("uuid").MustString()
 			user.Email = user.UUID + "@x.com"
+			user.Encryption = response.Get("data").GetIndex(i).Get("encryption").MustString()
+			if user.Encryption == "" {
+				user.Encryption = response.Get("data").GetIndex(i).Get("security").MustString()
+			}
 			user.SpeedLimit = response.Get("data").GetIndex(i).Get("st").MustUint64() * 1000000 / 8
 			user.DeviceLimit = response.Get("data").GetIndex(i).Get("dt").MustInt()
 		}
